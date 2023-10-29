@@ -75,7 +75,7 @@ newton_modificado(double a, double x0, double epsilon1, double epsilon2) {
     imprime_iteracao(k, x, fx, erro_relativo);
 
     M_newton_raphson_mod.insert(std::pair<int, std::vector<double>>(
-        k, {x, x2, fpx, fx0, erro_relativo}));
+        k, {x, x2, fx, fx0, erro_relativo}));
 
     if (std::abs(fx) < epsilon1 || std::abs(x - x2) < epsilon2 ||
         k > MAXIMO_ITERACOES) { // Condições de parada
@@ -115,6 +115,8 @@ secante(double a, double x0, double x1, double epsilon1, double epsilon2) {
     double x2 = x1 - (fx1 * (x1 - x0)) / (fx1 - fx0);
 
     double erro_relativo = std::abs(x1 - x0) / std::abs(x1);
+    M_secante.insert(
+        std::pair<int, std::vector<double>>(k, {x0,fx0,x1, fx1, erro_relativo}));
 
     std::cout << "Iteração " << k << ":\n";
     std::cout << "x" << k << " = " << x2 << ", f(x" << k
@@ -126,8 +128,6 @@ secante(double a, double x0, double x1, double epsilon1, double epsilon2) {
       return std::make_pair(x2, M_secante);
     }
 
-    M_secante.insert(
-        std::pair<int, std::vector<double>>(k, {x0,fx0,x1, fx1, erro_relativo}));
     x0 = x1;
     x1 = x2;
   }

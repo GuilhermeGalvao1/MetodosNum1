@@ -92,7 +92,7 @@ void imprime_tabela(std::map<int, std::vector<double>> M_1,
   for (std::map<int, std::vector<double>>::iterator it = M_3.begin();
        it != M_3.end(); ++it) {
     std::cout << "\n"
-              << "iteração: " << it->first + 1 << " -> ";
+              << "iteração: " << it->first << " -> ";
     for (int j = 0; j < it->second.size();
          j++) { // imprime tudo de uma interação
       std::cout << it->second[j] << "| ";
